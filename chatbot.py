@@ -13,7 +13,7 @@ with st.sidebar:
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
     
-    model = st.selectbox("Select model", ["text-davinci-003", "text-davinci-002"], index=0)
+    model = st.selectbox("Select model", ["gpt-3.5-turbo", "gpt-4"], index=0)
 
 # Main title
 st.title("💬 Chatbot")
