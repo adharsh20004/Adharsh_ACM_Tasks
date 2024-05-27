@@ -1,15 +1,19 @@
 import streamlit as st
 import openai
 import json
+import os
+
+# Get OpenAI API key from environment variable
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 # Sidebar setup
 with st.sidebar:
-    openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
+    st.text("OpenAI API Key is set via environment variable")
     "[Get an OpenAI API key](https://platform.openai.com/account/api-keys)"
     "[View the source code](https://github.com/streamlit/llm-examples/blob/main/Chatbot.py)"
     "[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/streamlit/llm-examples?quickstart=1)"
     
-    model = st.selectbox("Select model", ["gpt-3.5-turbo", "gpt-4"], index=0)
+    model = st.selectbox("Select model", ["text-davinci-003", "text-davinci-002"], index=0)
 
 # Main title
 st.title("💬 Chatbot")
@@ -25,7 +29,7 @@ for msg in st.session_state.messages:
 # Chat input
 if prompt := st.chat_input():
     if not openai_api_key:
-        st.info("Please add your OpenAI API key to continue.")
+        st.info("Please add your OpenAI API key to the environment variables.")
         st.stop()
     
     if len(prompt) > 2048:
@@ -37,14 +41,15 @@ if prompt := st.chat_input():
 
     try:
         openai.api_key = openai_api_key
-        response = openai.ChatCompletion.create(
+        response = openai.Completion.create(
             model=model,
-            messages=st.session_state.messages
+            prompt=prompt,
+            max_tokens=150
         )
-        msg = response.choices[0].message["content"]
+        msg = response.choices[0].text.strip()
         st.session_state.messages.append({"role": "assistant", "content": msg})
         st.chat_message("assistant").write(msg)
-    except openai.error.OpenAIError as e:
+    except Exception as e:
         st.error(f"An error occurred: {e}")
 
 # Add a button to download chat history
