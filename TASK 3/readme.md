@@ -8,6 +8,18 @@ I couldn't upload the output folder here as it was too big. Hence I have uploade
 
 
 Sample output:
+
+
+
+
+
+
 ![2022_Sebring_21_jpg rf f3801516afb195c0f0e8446e1ab8fe1e](https://github.com/adharsh20004/Tasks_ACM/assets/124517745/04839c00-54c6-4321-a8cf-c26d7734f5d8)
+
+
+
+
+
+
 
 ![f1_2022_bah_5_jpg rf e41c5434f3cbd112b4393f26425bf39a](https://github.com/adharsh20004/Tasks_ACM/assets/124517745/2c8cf227-47cd-4784-8e6d-14e2439fc363)
